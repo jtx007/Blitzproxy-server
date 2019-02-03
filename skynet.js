@@ -2,13 +2,13 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors');
 const app = express()
-const port = 'https://blitzproxyserver.herokuapp.com/'
+const port = process.env.PORT
 const request = require('request')
 
 let latLngCoords
 app.use(cors());
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log('Weather app spinning up, send request from frontend'))
 
 
 
