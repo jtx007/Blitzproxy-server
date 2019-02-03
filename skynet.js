@@ -6,7 +6,7 @@ const port = 'https://blitzproxyserver.herokuapp.com/'
 const request = require('request')
 
 let latLngCoords
-app.use(allowCrossDomain);
+app.use(cors());
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
