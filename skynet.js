@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors');
 const app = express()
-const port = 'https://blitzproxyserver.herokuapp.com/'
+const port = 9000
 const request = require('request')
 
 let latLngCoords
@@ -22,8 +22,10 @@ app.get('/', (req, res) => {
         if (error) {
             res.render('error', {error})
         }
+        
         let jsonResponseObject = JSON.parse(body)
         latLngCoords = (jsonResponseObject.results[0].locations[0].latLng)
+        // Send coordinates to dark sky api
         request(`https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/${latLngCoords.lat},${latLngCoords.lng}`, function (error, response, body) {
             console.log('error:', error);//Print error if applicable
             console.log('statuscode:', response && response.statusCode); //Print the response status code if a response was received
