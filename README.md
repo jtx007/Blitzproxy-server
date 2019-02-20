@@ -11,6 +11,6 @@ You will also need two API keys in order for the server to work as intended
 
 ## Installation and Setup 
 After cloning and making sure that you have the pre-requisities intact:
-<b>npm install</b>
+*<b>npm install</b>
 Then to spin up the new instance of the proxy-server
-<b>node skynet.js</b>
+*<b>node skynet.js</b>
