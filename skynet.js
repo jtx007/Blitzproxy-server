@@ -11,7 +11,7 @@ app.use(cors());
 
 
 
-app.listen(port, () => console.log('Weather app spinning up, send request from frontend'))
+app.listen(port, () => console.log(`Weather app spinning up, send request from frontend to port ${port}`))
 
 
 
