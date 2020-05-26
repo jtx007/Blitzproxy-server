@@ -6,44 +6,16 @@ const port = process.env.PORT || 3000
 const request = require('request')
 
 let latLngCoords
-conf = {
-  // look for PORT environment variable,
-  // else look for CLI argument,
-  // else use hard coded value for port 8080
-  port: process.env.PORT || process.argv[2] || 8080,
 
-  // origin undefined handler
-  // see https://github.com/expressjs/cors/issues/71
-  originUndefined: function (req, res, next) {
-    if (!req.headers.origin) {
-      res.json({
-        mess:
-          "Hi you are visiting the service locally. If this was a CORS the origin header should not be undefined",
-      });
-    } else {
-      next();
-    }
-  },
 
-  // Cross Origin Resource Sharing Options
-  cors: {
-    // origin handler
-    origin: function (origin, cb) {
-      // setup a white list
-      let wl = ["https://blitzweatherapp.herokuapp.com/", "http://localhost:3000/"];
-
-      if (wl.indexOf(origin) != -1) {
-        cb(null, true);
-      } else {
-        cb(new Error("invalid origin: " + origin), false);
-      }
-    },
-
-    optionsSuccessStatus: 200,
-  },
-};
-
-app.use(conf.originUndefined, cors(conf.cors));
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 
 app.listen(port, () => console.log('Weather app spinning up, send request from frontend'))
